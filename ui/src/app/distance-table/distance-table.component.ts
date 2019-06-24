@@ -12,4 +12,9 @@ export class DistanceTableComponent implements OnInit {
   ngOnInit() {
   }
 
+  update(){
+
+  }
+
+
 }
