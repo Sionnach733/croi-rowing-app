@@ -7,6 +7,7 @@ import { MyMapComponent } from './my-map/my-map.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { config } from './config'
+import {MatTableModule, MatProgressBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { config } from './config'
     BrowserModule,
     AgmCoreModule.forRoot({
       apiKey: config.MAPS_KEY
-    })
+    }),
+    MatTableModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

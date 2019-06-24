@@ -29,11 +29,10 @@ export class MyMapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const line = lineString(getGeoJsonData().features[0].geometry.coordinates);
-    let foo = along(line, 250);
-    console.log(foo);
-    this.currentLat = foo.geometry.coordinates[1];
-    this.currentLong = foo.geometry.coordinates[0];
     this.geoJsonObject = getGeoJsonData();
+    const line = lineString(getGeoJsonData().features[0].geometry.coordinates);
+    let marker = along(line, 250);
+    this.currentLat = marker.geometry.coordinates[1];
+    this.currentLong = marker.geometry.coordinates[0];
   }
 }
