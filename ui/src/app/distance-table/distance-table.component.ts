@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
-
-export interface RowerData {
-  rower: number;
-  distance: number;
-}
+import {Component, OnInit} from '@angular/core';
+import {RowerData} from "../rower";
+import {PmDataService} from "../pm-data.service";
 
 const ROWER_DATA: RowerData[] = [
   {rower: 1, distance: 50},
@@ -18,12 +15,17 @@ const ROWER_DATA: RowerData[] = [
   templateUrl: './distance-table.component.html',
   styleUrls: ['./distance-table.component.css']
 })
-export class DistanceTableComponent {
+export class DistanceTableComponent implements OnInit{
 
   displayedColumns: string[] = ['rower', 'distance'];
-  dataSource = ROWER_DATA;
+  dataSource;
 
-  constructor() { }
+  constructor(private pmDataService: PmDataService) { }
+
+  ngOnInit() {
+    this.pmDataService.getRowers()
+      .subscribe(rowers => this.dataSource = rowers);
+  }
 
   update(){
 
