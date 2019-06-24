@@ -19,16 +19,26 @@ export class DistanceTableComponent implements OnInit{
 
   displayedColumns: string[] = ['rower', 'distance'];
   dataSource;
+  totalDistance;
+  percentage;
 
   constructor(private pmDataService: PmDataService) { }
 
   ngOnInit() {
     this.pmDataService.getRowers()
-      .subscribe(rowers => this.dataSource = rowers);
+      .subscribe(rowers => {
+        this.dataSource = rowers;
+        this.calculateTotalDistance(rowers);
+      });
   }
 
-  update(){
-
+  calculateTotalDistance(rowers:RowerData[]){
+    let sum = 0;
+    for(let rower of rowers){
+      sum += rower.distance;
+    }
+    this.totalDistance = sum;
+    this.percentage = Math.floor((sum/1000000)*100);
   }
 
 

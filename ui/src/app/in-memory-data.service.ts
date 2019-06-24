@@ -8,11 +8,11 @@ import {RowerData} from "./rower";
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const rowers: RowerData[] = [
-      { rower: 1, distance: 10 },
-      { rower: 2, distance: 200 },
-      { rower: 3, distance: 65 },
-      { rower: 4, distance: 12 },
-      { rower: 5, distance: 3 }
+      { rower: 1, distance: 100 },
+      { rower: 2, distance: 2000 },
+      { rower: 3, distance: 6500 },
+      { rower: 4, distance: 120000 },
+      { rower: 5, distance: 100000 }
     ];
     return {rowers};
   }
