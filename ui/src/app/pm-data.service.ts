@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class PmDataService {
-  private rowersUrl = 'api/rowers';  // URL to web api
+  private rowersUrl = 'http://127.0.0.1:5000/rowers';  // URL to web api
   constructor(private http: HttpClient) { }
 
   /** GET heroes from the server */
