@@ -25,11 +25,12 @@ export class DistanceTableComponent implements OnInit{
   constructor(private pmDataService: PmDataService) { }
 
   ngOnInit() {
-    this.pmDataService.getRowers()
-      .subscribe(rowers => {
-        this.dataSource = rowers;
-        this.calculateTotalDistance(rowers);
+    setInterval(() => {
+      this.pmDataService.getRowers().subscribe(rowers => {
+          this.dataSource = rowers;
+          this.calculateTotalDistance(rowers);
       });
+    }, 10000);
   }
 
   calculateTotalDistance(rowers:RowerData[]){
