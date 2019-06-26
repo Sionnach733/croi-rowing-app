@@ -22,7 +22,7 @@ export class MyMapComponent implements OnInit {
   styleFunc(feature) {
     return ({
       clickable: false,
-      fillColor: feature.getProperty('color'),
+      strokeColor: feature.getProperty('color'),
       strokeWeight: 2
     });
   }
