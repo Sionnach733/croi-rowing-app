@@ -33,12 +33,21 @@ export class MyMapComponent implements OnInit {
     this.geoJsonObject = getGeoJsonData();
     const line = lineString(getGeoJsonData().features[0].geometry.coordinates);
     this.pmDataService.currentDistance.subscribe(distance => {
-      const kilometres = distance.value/1000;
+      const kilometres = this.getKilometresAlongShannon(distance.value/1000);
       console.log('distance changed, updating marker...');
       let marker = along(line, kilometres);
       this.currentLat = marker.geometry.coordinates[1];
       this.currentLong = marker.geometry.coordinates[0];
     });
+  }
 
+  getKilometresAlongShannon(distance){
+    if (distance > 360 && distance < 720){
+      return distance - 360;
+    } else if(distance >= 720){
+      return distance - 720;
+    }else{
+      return distance;
+    }
   }
 }

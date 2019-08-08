@@ -9,26 +9,26 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-rower1 = 1000
-rower2 = 1000
-rower3 = 1000
-rower4 = 1000
-rower5 = 1000
+rower1 = 61000
+rower2 = 61000
+rower3 = 61000
+rower4 = 61000
+rower5 = 61000
 
 
 @app.route('/')
 @app.route('/rowers')
 def index():
     global rower1
-    rower1 += randint(1, 100)
+    rower1 += randint(1, 1000)
     global rower2
-    rower2 += randint(1, 100)
+    rower2 += randint(1, 1000)
     global rower3
-    rower3 += randint(1, 100)
+    rower3 += randint(1, 1000)
     global rower4
-    rower4 += randint(1, 100)
+    rower4 += randint(1, 1000)
     global rower5
-    rower5 += randint(1, 100)
+    rower5 += randint(1, 1000)
 
     rowers = [
         {'rower': 1, 'distance': rower1},
