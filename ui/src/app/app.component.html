@@ -1,12 +1,21 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="Row">
-  <img class="Column" width="250" alt="croi Logo" src="../assets/crossfit-croi.jpg">
-  <h1 id="main-title" class="Column">1,000,000m Rowathon</h1>
-  <img id="pieta-logo" class="Column" width="500" height="250" alt="pieta Logo" src="../assets/Pieta-House.jpg">
-</div>
-<div id="left-panel">
+<div fxFlex fxLayout="column">
+  <!-- TODO move to header component -->
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout fxLayoutAlign="center">
+      <section class="mat-typography">
+        <span class="mat-display-2">1,000,000 Meter Rowathon</span>
+      </section>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="logos" fxLayout fxLayoutAlign="space-evenly">
+      <img height="90 " alt="CrossFit Croi" src="../assets/crossfit-croi.jpg" />
+      <img
+        height="90"
+        id="pieta-logo"
+        alt="Pieta House"
+        src="../assets/pieta-house-blue.jpg"
+      />
+    </mat-toolbar-row>
+  </mat-toolbar>
   <app-distance-table></app-distance-table>
-</div>
-<div id="right-panel">
   <app-my-map></app-my-map>
 </div>

@@ -1,21 +1,33 @@
-<table mat-table [dataSource]="dataSource">
+<div fxFlex fxLayout="column">
+  <div fxFlex fxLayoutAlign="center" fxLayout="column">
+    <div fxLayoutAlign="center center" fxLayout="column">
+      <h1>Total Meters</h1>
+      <h2 id="totalMetres">
+        {{ totalDistance | number: '2.' }} / {{ target | number: '2.' }}
+      </h2>
+    </div>
+    <progress-bar progress="{{ percentage }}" [color]="'#488aff'">
+    </progress-bar>
+    <div fxLayoutAlign="center" *ngIf="percentage === 100">
+      <h1 style="color:red;">Goal Achieved!</h1>
+    </div>
+    <div>
+      <table mat-table [dataSource]="dataSource">
+        <!-- Rower Column -->
+        <ng-container matColumnDef="rower">
+          <th mat-header-cell *matHeaderCellDef>Rower</th>
+          <td mat-cell *matCellDef="let element">{{ element.rower }}</td>
+        </ng-container>
 
-  <!-- Rower Column -->
-  <ng-container matColumnDef="rower">
-    <th mat-header-cell *matHeaderCellDef> Rower </th>
-    <td mat-cell *matCellDef="let element"> {{element.rower}} </td>
-  </ng-container>
+        <!-- Distance Column -->
+        <ng-container matColumnDef="distance">
+          <th mat-header-cell *matHeaderCellDef>Distance</th>
+          <td mat-cell *matCellDef="let element">{{ element.distance }}</td>
+        </ng-container>
 
-  <!-- Distance Column -->
-  <ng-container matColumnDef="distance">
-    <th mat-header-cell *matHeaderCellDef> Distance </th>
-    <td mat-cell *matCellDef="let element"> {{element.distance}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-<h2>Total Metres</h2>
-<p id="totalMetres">{{totalDistance}}/1000000</p>
-<mat-progress-bar mode="determinate" value="{{percentage}}"></mat-progress-bar>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>
