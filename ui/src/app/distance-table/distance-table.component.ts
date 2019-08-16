@@ -22,7 +22,7 @@ export class DistanceTableComponent implements OnInit {
         this.dataSource = rowers;
         this.calculateTotalDistance(rowers);
       });
-    }, 1000);
+    }, 10000);
   }
 
   calculateTotalDistance(rowers: RowerData[]) {

@@ -1,7 +1,7 @@
 <div fxFlex fxLayout="column">
   <div fxFlex fxLayoutAlign="center" fxLayout="column">
     <div fxLayoutAlign="center center" fxLayout="column">
-      <h1>Total Meters</h1>
+      <h1>Total Metres</h1>
       <h2 id="totalMetres">
         {{ totalDistance | number: '2.' }} / {{ target | number: '2.' }}
       </h2>
@@ -11,6 +11,7 @@
     <div fxLayoutAlign="center" *ngIf="percentage === 100">
       <h1 style="color:red;">Goal Achieved!</h1>
     </div>
+    <app-my-map></app-my-map>
     <div>
       <table mat-table [dataSource]="dataSource">
         <!-- Rower Column -->
