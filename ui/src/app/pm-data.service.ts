@@ -1,25 +1,33 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {RowerData} from "./rower";
-import {BehaviorSubject, Observable} from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, EMPTY, switchMap, timer } from 'rxjs';
+import { RowerData } from './rower';
 
-@Injectable({
-  providedIn: 'root'
-})
+const ROWERS_URL = 'http://127.0.0.1:5000/rowers';
+const POLL_INTERVAL_MS = 10_000;
+
+@Injectable({ providedIn: 'root' })
 export class PmDataService {
-  private rowersUrl = 'http://127.0.0.1:5000/rowers';
-  private distanceSource = new BehaviorSubject({'value': 0});
-  currentDistance = this.distanceSource.asObservable();
-  constructor(private http: HttpClient) { }
+  private readonly http = inject(HttpClient);
 
-  /** GET heroes from the server */
-  getRowers (): Observable<RowerData[]> {
-    return this.http.get<RowerData[]>(this.rowersUrl)
-  }
+  /** Latest rower distances, polled from the backend. A failed poll keeps the previous values. */
+  readonly rowers = toSignal(
+    timer(0, POLL_INTERVAL_MS).pipe(
+      switchMap(() =>
+        this.http.get<RowerData[]>(ROWERS_URL).pipe(
+          catchError((err) => {
+            console.error('Failed to fetch rowers', err);
+            return EMPTY;
+          }),
+        ),
+      ),
+    ),
+    { initialValue: [] as RowerData[] },
+  );
 
-  onDistanceChange(distance: number): void {
-    this.distanceSource.next({'value': distance});
-  }
+  /** Total metres rowed by everyone. */
+  readonly totalDistance = computed(() =>
+    this.rowers().reduce((sum, r) => sum + r.distance, 0),
+  );
 }
-
-

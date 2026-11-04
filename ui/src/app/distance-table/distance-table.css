@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-progress-bar {
+  height: 16px;
+  --mat-progress-bar-active-indicator-height: 16px;
+  --mat-progress-bar-track-height: 16px;
+}
+
+.percent {
+  text-align: center;
+}
+
+.goal {
+  color: red;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  padding: 10px;
+}

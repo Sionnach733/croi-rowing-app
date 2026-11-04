@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.title-row {
+  justify-content: center;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.logos {
+  min-height: 100px;
+  justify-content: space-evenly;
+}
