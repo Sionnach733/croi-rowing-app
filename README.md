@@ -1,6 +1,9 @@
 # Croi-rowing-app
 App to display live info of rowing 1 million metres for charity. Will display current distance of each rower, as well as total. Also will show map of Ireland and virtual rowing progress along the river Shannon. If the target is achieved, we will need to row the full length of the shannon almost 3 times!
 
+<img width="1920" height="1080" alt="rowathon-dashboard-1080p" src="https://github.com/user-attachments/assets/bfb8153b-5c14-4aed-9eab-aca7a050c064" />
+
+
 ## Requirements
 - Node.js 20.19+ (any current LTS) and npm
 - Python 3.10+
