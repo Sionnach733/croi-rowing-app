@@ -1,7 +1,84 @@
-html, body {
+/*
+ * Design tokens. The dashboard is built for a TV/projector, so the root font size
+ * scales with the viewport: everything sized in rem stays proportional from 1080p to 4K.
+ */
+:root {
+  --bg: #0a0e13;
+  --surface: #121821;
+  --surface-raised: #19212d;
+  --border: #243041;
+  --text: #eef2f7;
+  --text-muted: #8a97a8;
+
+  --accent: #c6f432;          /* progress, current position */
+  --accent-soft: rgb(198 244 50 / 0.14);
+  --secondary: #4c8dff;       /* echoes the club and charity logos */
+  --gold: #ffc53d;            /* goal reached */
+  --success: #3ddc84;
+  --warning: #ffb020;
+
+  --radius: 1rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  font-size: clamp(14px, 1.05vw, 32px);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
   margin: 0;
 }
 
-body, h1, h2, h3, p {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+/* Shared card surface */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* Small uppercase label used above stats */
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

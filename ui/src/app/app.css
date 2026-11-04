@@ -1,24 +1,88 @@
 :host {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  height: 100dvh;
+  padding: var(--space-4) var(--space-6) var(--space-6);
 }
 
 .header {
-  background: var(--mat-sys-primary);
-  color: var(--mat-sys-on-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
 }
 
-.title-row {
-  justify-content: center;
+.logo {
+  height: 4rem;
+  width: auto;
+  border-radius: 0.6rem;
+}
+
+.titles {
+  flex: 1;
+  min-width: 0;
 }
 
 .title {
-  font-size: 2.8rem;
-  font-weight: 400;
-  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-.logos {
-  min-height: 100px;
-  justify-content: space-evenly;
+.subtitle {
+  margin-top: var(--space-1);
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  min-height: 0;
+}
+
+.map {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.side {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  min-height: 0;
+}
+
+/* Fallback for laptops and phones: stack and allow scrolling. */
+@media (max-width: 900px) {
+  :host {
+    height: auto;
+    padding: var(--space-4);
+  }
+
+  .header {
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .titles {
+    order: -1;
+    flex-basis: 100%;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .dashboard,
+  .side {
+    grid-template-columns: 1fr;
+  }
+
+  .map {
+    height: 60vh;
+  }
 }

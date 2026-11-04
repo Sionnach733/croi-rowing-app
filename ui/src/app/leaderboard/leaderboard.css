@@ -1,0 +1,81 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  min-height: 0;
+  height: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: baseline;
+  column-gap: var(--space-3);
+  row-gap: var(--space-2);
+}
+
+.rank {
+  grid-row: span 2;
+  align-self: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.distance {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.track {
+  grid-column: 2 / -1;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--surface-raised);
+  overflow: hidden;
+}
+
+.track__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--secondary);
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.row--leader .rank,
+.row--leader .distance {
+  color: var(--accent);
+}
+
+.row--leader .track__fill {
+  background: var(--accent);
+}
+
+.empty {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .board {
+    padding: var(--space-4);
+  }
+}

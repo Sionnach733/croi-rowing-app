@@ -1,0 +1,20 @@
+<section class="board card" aria-labelledby="board-title">
+  <h2 id="board-title" class="eyebrow">Rowers</h2>
+
+  @if (rows().length) {
+    <ol class="list">
+      @for (row of rows(); track row.name; let i = $index) {
+        <li class="row" [class.row--leader]="i === 0">
+          <span class="rank tabular">{{ i + 1 }}</span>
+          <span class="name">{{ row.name }}</span>
+          <span class="distance tabular">{{ row.distance | number }} m</span>
+          <span class="track" aria-hidden="true">
+            <span class="track__fill" [style.width.%]="row.share"></span>
+          </span>
+        </li>
+      }
+    </ol>
+  } @else {
+    <p class="empty">Waiting for the first readings from the ergs…</p>
+  }
+</section>
