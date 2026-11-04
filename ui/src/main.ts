@@ -1,12 +1,24 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { App } from './app/app';
+import { config } from './app/config';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
+/** Load the Google Maps JS API once, before the app starts. */
+function loadGoogleMaps(apiKey: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const callbackName = '__onGoogleMapsLoaded';
+    (window as unknown as Record<string, () => void>)[callbackName] = () => resolve();
+    const script = document.createElement('script');
+    script.src =
+      `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}` +
+      `&libraries=marker&loading=async&callback=${callbackName}`;
+    script.async = true;
+    script.onerror = () => reject(new Error('Failed to load Google Maps'));
+    document.head.appendChild(script);
+  });
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+loadGoogleMaps(config.MAPS_KEY)
+  .catch((err) => console.error(err))
+  .then(() => bootstrapApplication(App, appConfig))
+  .catch((err) => console.error(err));
