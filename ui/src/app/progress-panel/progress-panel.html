@@ -1,0 +1,34 @@
+<section class="panel card" [class.panel--goal]="goalReached()" aria-label="Team progress">
+  <p class="eyebrow">{{ goalReached() ? 'Goal reached!' : 'Total metres rowed' }}</p>
+
+  <p class="total tabular" aria-live="polite">
+    {{ total() | number }}<span class="unit">m</span>
+  </p>
+  <p class="target tabular">of {{ target | number }} m</p>
+
+  <div
+    class="bar"
+    role="progressbar"
+    aria-label="Progress to target"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [attr.aria-valuenow]="barPercent()"
+  >
+    <div class="bar__fill" [style.width.%]="barPercent()"></div>
+  </div>
+
+  <dl class="stats">
+    <div class="stat">
+      <dt class="eyebrow">Complete</dt>
+      <dd class="stat__value tabular">{{ percent() | number: '1.1-1' }}%</dd>
+    </div>
+    <div class="stat">
+      <dt class="eyebrow">To go</dt>
+      <dd class="stat__value tabular">{{ remainingKm() | number: '1.1-1' }} km</dd>
+    </div>
+    <div class="stat">
+      <dt class="eyebrow">Shannon lengths</dt>
+      <dd class="stat__value tabular">{{ lengths() | number: '1.2-2' }}×</dd>
+    </div>
+  </dl>
+</section>

@@ -1,10 +1,19 @@
-<mat-toolbar class="header">
-  <mat-toolbar-row class="title-row">
+<header class="header">
+  <img class="logo" src="crossfit-croi.jpg" alt="CrossFit Croí" width="525" height="525" />
+  <div class="titles">
     <h1 class="title">1,000,000 Metre Rowathon</h1>
-  </mat-toolbar-row>
-  <mat-toolbar-row class="logos">
-    <img height="90" alt="CrossFit Croi" src="crossfit-croi.jpg" />
-    <img height="90" alt="Pieta House" src="pieta-house-blue.jpg" />
-  </mat-toolbar-row>
-</mat-toolbar>
-<app-distance-table />
+    <p class="subtitle">CrossFit Croí rowing the length of the Shannon for Pieta House</p>
+  </div>
+  <app-connection-status />
+  <img class="logo logo--wide" src="pieta-house-blue.jpg" alt="Pieta House" width="523" height="294" />
+</header>
+
+<main class="dashboard">
+  <section class="map card" aria-label="Progress along the River Shannon">
+    <app-route-map />
+  </section>
+  <div class="side">
+    <app-progress-panel />
+    <app-leaderboard />
+  </div>
+</main>

@@ -1,0 +1,16 @@
+<google-map
+  height="100%"
+  width="100%"
+  [center]="center"
+  [zoom]="7"
+  [options]="options"
+  (mapInitialized)="fitRoute($event)"
+>
+  <map-polyline [path]="fullPath" [options]="remainingLine" />
+  <map-polyline [path]="rowedPath()" [options]="rowedLine" />
+  <map-advanced-marker [position]="position()" [content]="markerContent" title="Current position" />
+</google-map>
+<p class="legend eyebrow" aria-hidden="true">
+  <span class="key key--rowed"></span>Rowed this length
+  <span class="key key--todo"></span>Still to go
+</p>

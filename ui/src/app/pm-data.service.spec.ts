@@ -24,6 +24,7 @@ describe('PmDataService', () => {
   });
 
   it('starts empty with a zero total', () => {
+    expect(service.status()).toBe('connecting');
     expect(service.rowers()).toEqual([]);
     expect(service.totalDistance()).toBe(0);
     vi.advanceTimersByTime(0);
@@ -39,6 +40,7 @@ describe('PmDataService', () => {
 
     expect(service.rowers().length).toBe(2);
     expect(service.totalDistance()).toBe(3500);
+    expect(service.status()).toBe('live');
   });
 
   it('polls again every 10 seconds', () => {
@@ -62,11 +64,13 @@ describe('PmDataService', () => {
     vi.advanceTimersByTime(10_000);
     http.expectOne(URL).flush('down', { status: 500, statusText: 'Server Error' });
     expect(service.totalDistance()).toBe(500);
+    expect(service.status()).toBe('offline');
     expect(consoleError).toHaveBeenCalled();
 
     vi.advanceTimersByTime(10_000);
     http.expectOne(URL).flush([{ rower: 1, distance: 900 }]);
     expect(service.totalDistance()).toBe(900);
+    expect(service.status()).toBe('live');
   });
 
   it('cancels an in-flight request when the next poll fires', () => {
