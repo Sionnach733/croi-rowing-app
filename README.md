@@ -19,6 +19,12 @@ python pm-collector.py     # real Concept2 PM3/PM5 monitors over USB
 ```
 Both serve `http://127.0.0.1:5000/rowers`.
 
+Run the backend tests (from `backend/`):
+```sh
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## UI
 To use the Google Maps API you need a key: https://developers.google.com/maps/documentation/javascript/get-api-key
 (enable the **Maps JavaScript API**, and restrict the key to `http://localhost:4200/*`).
@@ -28,6 +34,7 @@ cd ui
 cp src/app/config.example.ts src/app/config.ts   # then put your key in config.ts
 npm ci
 npm start      # http://localhost:4200
-npm test       # unit tests (Vitest)
+npm test                 # unit tests (Vitest)
+npm run test:coverage    # with coverage report
 ```
 `config.ts` is gitignored and should never be pushed!
